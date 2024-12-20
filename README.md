@@ -27,6 +27,8 @@ Installs the following programs using Winget:
 - [Mozilla Firefox](https://www.mozilla.org/firefox/) (`Mozilla.Firefox`)
 - [Notepad++](https://notepad-plus-plus.org/) (`Notepad++.Notepad++`)
 - [TeraCopy](https://www.codesector.com/teracopy) (`CodeSector.TeraCopy`)
+- [Python 3.13](https://www.python.org/) (`Python.Python.3.13`)
+- [7-Zip](https://www.7-zip.org/) (`7zip.7zip`)
 
 ## Usage
 
@@ -55,4 +57,3 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contributing
 Feel free to open issues or submit pull requests to improve the script or add additional features.
-
