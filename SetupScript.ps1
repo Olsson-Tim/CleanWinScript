@@ -170,6 +170,7 @@ function Invoke-BingSearch {
 function Invoke-TaskbarSearchBTN {
     try {
         Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search\" -Name SearchboxTaskbarMode -Value 0
+        Write-Host "Taskbar Search Button has been disabled." -ForegroundColor Green
     }
     catch {
      Write-Host "Failed to disable Taskbar button: $_" -ForegroundColor Red
@@ -180,6 +181,7 @@ function Invoke-TaskbarSearchBTN {
 function Invoke-TaskbarWidget {
    try {
     Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarData" -Value 0
+    Write-Host "Taskbar Widget has been disabled." -ForegroundColor Green
    }
    catch {
     Write-Host "Failed to disable Taskbar Widget: $_" -ForegroundColor Red
@@ -219,6 +221,7 @@ function Invoke-DisableTelementery {
 
     # Disable Defender Auto Sample Submission
     Set-MpPreference -SubmitSamplesConsent 2 -ErrorAction SilentlyContinue | Out-Null
+    Write-Host "Telementery has been disabled." -ForegroundColor Green
 }
 
 function Invoke-TaskbarEndTask {
@@ -233,6 +236,7 @@ function Invoke-TaskbarEndTask {
 
     # Set the property, creating it if it doesn't exist
     New-ItemProperty -Path $path -Name $name -PropertyType DWord -Value $value -Force | Out-Null
+    Write-Host "Taskbar End Task has been enabled." -ForegroundColor Green
 }
 
 # Revert right-click menu to Windows 10 style
@@ -273,38 +277,35 @@ Invoke-SystemCommand "sfc /scannow" "System File Checker (SFC) scan"
 Invoke-SystemCommand "DISM /Online /Cleanup-Image /ScanHealth" "DISM ScanHealth"
 Invoke-SystemCommand "DISM /Online /Cleanup-Image /RestoreHealth" "DISM RestoreHealth"
 
-# Define the list of programs to install
-$programs = @(
-    "DBBrowserForSQLite.DBBrowserForSQLite", # DB Browser for SQLite
-    "Mozilla.Firefox",                       # Mozilla Firefox
-    "Notepad++.Notepad++",                   # Notepad++
-    "CodeSector.TeraCopy",                   # TeraCopy
-    "Python.Python.3.13",                    # Python 3.13        
-    "7zip.7zip"                              # 7-Zip
-)
+# Check for -noapps argument
+if ($args -notcontains "-noapps") {
+    Write-Host "No -noapps flag detected. Proceeding with application installation..." -ForegroundColor Cyan
 
-# Function to check and install programs
-foreach ($program in $programs) {
-    Write-Host "Checking installation for $program..." -ForegroundColor Cyan
+    # Define the list of programs to install
+    $programs = @(
+        "DBBrowserForSQLite.DBBrowserForSQLite", # DB Browser for SQLite
+        "Mozilla.Firefox",                       # Mozilla Firefox
+        "Notepad++.Notepad++",                   # Notepad++
+        "CodeSector.TeraCopy",                   # TeraCopy
+        "Python.Python.3.13",                    # Python 3.13        
+        "7zip.7zip"                              # 7-Zip
+    )
 
-    try {
+    # Function to check and install programs
+    foreach ($program in $programs) {
+        Write-Host "Checking installation for $program..." -ForegroundColor Cyan
+    
         # Check if the program is already installed
         $installed = winget list --id $program 2>&1 | Out-String
         if ($installed -match "No installed package found matching input criteria.") {
             Write-Host "Installing $program..." -ForegroundColor Green
-
-            # Try installing the program and handle the first-time Y prompt
-            $installOutput = winget install --id $program --accept-source-agreements --accept-package-agreements 2>&1 | Out-String
-            if ($installOutput -match "Do you agree to all source agreements") {
-                Write-Host "Responding to first-time Y prompt..." -ForegroundColor Cyan
-                "Y" | winget install --id $program --accept-source-agreements --accept-package-agreements
-            }
+            winget install --id $program --accept-source-agreements --accept-package-agreements
         } else {
             Write-Host "$program is already installed." -ForegroundColor Yellow
         }
-    } catch {
-        Write-Host "An error occurred while processing $program $_" -ForegroundColor Red
     }
+} else {
+    Write-Host "-noapps flag detected. Skipping application installation." -ForegroundColor Yellow
 }
 
 
