@@ -1,108 +1,88 @@
-# Windows Setup Script
+# Windows System Optimization Script
 
-This script is designed to streamline the configuration of a Windows environment by performing system maintenance tasks, tweaking system settings, and installing essential applications.
+## Overview
+This script optimizes and customizes your Windows system by automating tasks such as enabling/disabling features, removing unnecessary software, and running essential system maintenance commands. It's an efficient, all-in-one solution to enhance productivity and streamline system performance.
 
 ## Features
 
-1. **Revert Right-Click Menu to Windows 10 Style**
-   - Restores the classic right-click menu layout.
+### Customization:
+- Revert the right-click menu to Windows 10 style for better usability.
+- Enable visibility of file extensions and hidden files in File Explorer.
+- Activate a dark theme across Windows.
 
-2. **Enable File Extensions Visibility**
-   - Ensures file extensions are visible in File Explorer.
+### Optimization:
+- Completely remove OneDrive, including leftover files and registry entries.
+- Disable Windows Copilot.
+- Turn off Bing Search in the Start Menu.
+- Remove the Taskbar Search Button and Widgets.
+- Enable the Taskbar's End Task option for quick program termination.
+- Reduce system overhead by disabling unnecessary telemetry.
 
-3. **Enable Hidden Files Visibility**
-   - Allows hidden files and system files to be visible in File Explorer.
+### Maintenance:
+Perform vital maintenance tasks using built-in Windows tools:
+- **sfc /scannow**: System File Checker to repair corrupted system files.
+- **DISM ScanHealth** and **DISM RestoreHealth**: Check and restore Windows image health.
 
-4. **Remove OneDrive**
-   - Completely removes OneDrive, its leftovers, and restores default folder locations.
-
-5. **Disable Windows Copilot**
-   - Removes Windows Copilot from the system.
-
-6. **Enable Dark Theme**
-   - Switches the system to dark mode.
-
-7. **Disable Bing Search**
-   - Disables Bing search integration in the Windows search bar.
-
-8. **Disable Taskbar Search Button**
-   - Removes the search button from the taskbar.
-
-9. **Disable Taskbar Widget**
-   - Removes the widget button from the taskbar.
-
-10. **Disable Telemetry**
-    - Limits Windows telemetry and diagnostics data collection.
-
-11. **System Maintenance Commands**
-    - Runs critical maintenance commands like `sfc /scannow` and `DISM` commands to ensure system integrity.
-
-12. **Install Essential Applications**
-    - Automatically installs a predefined list of programs using `winget`:
-      - DB Browser for SQLite
-      - Mozilla Firefox
-      - Notepad++
-      - TeraCopy
-      - Python 3.13
-      - 7-Zip
-
-13. **Restart Explorer**
-    - Restarts the `explorer.exe` process to apply changes immediately.
-
-## Prerequisites
-
-- Windows PowerShell must be run as an administrator.
-- Winget (Windows Package Manager) should be installed and configured.
+### Software Installation:
+Install essential software automatically using **winget** (Windows Package Manager):
+- DB Browser for SQLite
+- Mozilla Firefox
+- Notepad++
+- TeraCopy
+- Python 3.13
+- 7-Zip
 
 ## Usage
 
-1. Clone or download the script.
-2. Open PowerShell as Administrator.
-3. Run the script:
-   ```powershell
-   .\setup-script.ps1
-   ```
+### Prerequisites:
+- Ensure you have administrative privileges to execute the script.
+- Confirm that the **winget** package manager is installed and up-to-date.
 
-## Functions
+### Running the Script:
+1. Open PowerShell as an Administrator.
+2. Execute the script.
 
-### `Invoke-SystemCommand`
-Runs a system command with descriptive logging. Stops execution if the command fails.
+### What Happens:
+- The script customizes your system by making registry changes.
+- OneDrive is uninstalled (with optional manual removal of leftover files).
+- Essential software is installed automatically.
+- System maintenance tasks are run.
+- Explorer is restarted to apply changes.
 
-### `Invoke-Revert-RightClickMenu`
-Reverts the context menu to the Windows 10 style.
+## Safety Notes
+- **Backup Important Files:** Before running the script, back up critical data.
+- **Transparency:** Actions are logged using `Write-Host`, keeping you informed in real time.
+- **Review the Script:** Review the script before running it to ensure it meets your needs.
 
-### `Invoke-ShowFileExtensions`
-Enables visibility of file extensions in File Explorer.
+## Troubleshooting
+- If the script encounters an issue, detailed error messages will help identify the problem.
+- Verify dependencies, such as having `winget` installed and a stable internet connection.
 
-### `Invoke-ShowHiddenFiles`
-Enables visibility of hidden files and system files in File Explorer.
+## License
+This project is licensed under the MIT License. You are free to modify and distribute it as needed.
 
-### `Invoke-RemoveOneDrive`
-Completely removes OneDrive and its associated data.
+## Contributions
+Contributions are welcome! Feel free to submit a pull request or open an issue if you have suggestions for improvements or additional features.
 
-### `Invoke-DisableWindowsCopilot`
-Disables Windows Copilot.
+## Author
+- **Your Name**  
+  Tech enthusiast dedicated to automation and system optimization.  
+  Connect via [GitHub](https://github.com/your-username).
 
-### `Invoke-EnableDarkTheme`
-Enables the system-wide dark theme.
+---
 
-### `Invoke-BingSearch`
-Disables Bing search integration in the Windows search bar.
+### Example Output
+```powershell
+Starting: System File Checker (SFC) scan...
+System File Checker (SFC) scan completed successfully!
 
-### `Invoke-TaskbarSearchBTN`
-Disables the taskbar search button.
+Installing Mozilla.Firefox...
+Mozilla.Firefox is already installed.
 
-### `Invoke-TaskbarWidget`
-Removes the widget button from the taskbar.
+Restarting explorer.exe to apply changes...
+Script completed!
+```
 
-### `Invoke-DisableTelemetry`
-Limits telemetry and diagnostics data collection.
+---
 
-## Additional Notes
-
-- The script provides logging for each task, indicating success or failure.
-- OneDrive removal includes steps to copy files from the OneDrive directory to the user's profile directory, ensuring no data is lost.
-- After the script completes, restart your system for all changes to take full effect.
-
-Enjoy a cleaner, more efficient Windows setup!
-
+**Streamline your Windows experience with this powerful optimization script!**
