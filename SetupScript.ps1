@@ -269,15 +269,26 @@ $programs = @(
 foreach ($program in $programs) {
     Write-Host "Checking installation for $program..." -ForegroundColor Cyan
 
-    # Check if the program is already installed
-    $installed = winget list --id $program 2>&1 | Out-String
-    if ($installed -match "No installed package found matching input criteria.") {
-        Write-Host "Installing $program..." -ForegroundColor Green
-        winget install --id $program --accept-source-agreements --accept-package-agreements
-    } else {
-        Write-Host "$program is already installed." -ForegroundColor Yellow
+    try {
+        # Check if the program is already installed
+        $installed = winget list --id $program 2>&1 | Out-String
+        if ($installed -match "No installed package found matching input criteria.") {
+            Write-Host "Installing $program..." -ForegroundColor Green
+
+            # Try installing the program and handle the first-time Y prompt
+            $installOutput = winget install --id $program --accept-source-agreements --accept-package-agreements 2>&1 | Out-String
+            if ($installOutput -match "Do you agree to all source agreements") {
+                Write-Host "Responding to first-time Y prompt..." -ForegroundColor Cyan
+                "Y" | winget install --id $program --accept-source-agreements --accept-package-agreements
+            }
+        } else {
+            Write-Host "$program is already installed." -ForegroundColor Yellow
+        }
+    } catch {
+        Write-Host "An error occurred while processing $program $_" -ForegroundColor Red
     }
 }
+
 
 # Restart explorer.exe
 Write-Host "Restarting explorer.exe to apply changes..." -ForegroundColor Cyan
