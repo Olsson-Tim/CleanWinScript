@@ -64,13 +64,6 @@ This project is licensed under the MIT License. You are free to modify and distr
 ## Contributions
 Contributions are welcome! Feel free to submit a pull request or open an issue if you have suggestions for improvements or additional features.
 
-## Author
-- **Your Name**  
-  Tech enthusiast dedicated to automation and system optimization.  
-  Connect via [GitHub](https://github.com/your-username).
-
----
-
 ### Example Output
 ```powershell
 Starting: System File Checker (SFC) scan...
