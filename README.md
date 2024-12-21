@@ -1,72 +1,108 @@
-# Windows Configuration Script
+# Windows Setup Script
 
-This PowerShell script is designed to streamline the configuration of a Windows system by performing the following tasks:
-
-1. Running system maintenance commands.
-2. Reverting the right-click context menu to the Windows 10 style.
-3. Enabling the visibility of file extensions and hidden files in File Explorer.
-4. Removing OneDrive.
-5. Disabling Windows Copilot.
-6. Enabling the dark theme.
-7. Installing essential applications using Winget.
-8. Restarting `explorer.exe` to apply changes.
+This script is designed to streamline the configuration of a Windows environment by performing system maintenance tasks, tweaking system settings, and installing essential applications.
 
 ## Features
 
-### System Maintenance Commands
-- **System File Checker (SFC)**: Scans for and repairs corrupted system files.
-- **DISM ScanHealth**: Checks the health of the Windows image.
-- **DISM RestoreHealth**: Repairs the Windows image if any issues are detected.
+1. **Revert Right-Click Menu to Windows 10 Style**
+   - Restores the classic right-click menu layout.
 
-### Context Menu Customization
-- Reverts the modern Windows 11 right-click menu to the classic Windows 10 style.
+2. **Enable File Extensions Visibility**
+   - Ensures file extensions are visible in File Explorer.
 
-### File Explorer Customization
-- Enables the visibility of file extensions.
-- Shows hidden and super-hidden files.
+3. **Enable Hidden Files Visibility**
+   - Allows hidden files and system files to be visible in File Explorer.
 
-### Additional Tweaks
-- **Remove OneDrive**: Uninstalls OneDrive from the system.
-- **Disable Windows Copilot**: Disables Windows Copilot through a registry change.
-- **Enable Dark Theme**: Sets the system and app theme to dark mode.
+4. **Remove OneDrive**
+   - Completely removes OneDrive, its leftovers, and restores default folder locations.
 
-### Application Installation
-Installs the following programs using Winget:
-- [DB Browser for SQLite](https://sqlitebrowser.org/) (`DBBrowserForSQLite.DBBrowserForSQLite`)
-- [Mozilla Firefox](https://www.mozilla.org/firefox/) (`Mozilla.Firefox`)
-- [Notepad++](https://notepad-plus-plus.org/) (`Notepad++.Notepad++`)
-- [TeraCopy](https://www.codesector.com/teracopy) (`CodeSector.TeraCopy`)
-- [Python 3.13](https://www.python.org/) (`Python.Python.3.13`)
-- [7-Zip](https://www.7-zip.org/) (`7zip.7zip`)
+5. **Disable Windows Copilot**
+   - Removes Windows Copilot from the system.
 
-### Explorer Restart
-- Restarts `explorer.exe` to apply all system changes immediately.
+6. **Enable Dark Theme**
+   - Switches the system to dark mode.
+
+7. **Disable Bing Search**
+   - Disables Bing search integration in the Windows search bar.
+
+8. **Disable Taskbar Search Button**
+   - Removes the search button from the taskbar.
+
+9. **Disable Taskbar Widget**
+   - Removes the widget button from the taskbar.
+
+10. **Disable Telemetry**
+    - Limits Windows telemetry and diagnostics data collection.
+
+11. **System Maintenance Commands**
+    - Runs critical maintenance commands like `sfc /scannow` and `DISM` commands to ensure system integrity.
+
+12. **Install Essential Applications**
+    - Automatically installs a predefined list of programs using `winget`:
+      - DB Browser for SQLite
+      - Mozilla Firefox
+      - Notepad++
+      - TeraCopy
+      - Python 3.13
+      - 7-Zip
+
+13. **Restart Explorer**
+    - Restarts the `explorer.exe` process to apply changes immediately.
+
+## Prerequisites
+
+- Windows PowerShell must be run as an administrator.
+- Winget (Windows Package Manager) should be installed and configured.
 
 ## Usage
 
-### Prerequisites
-- Ensure you have administrative privileges to run the script.
-- [Winget](https://learn.microsoft.com/en-us/windows/package-manager/) must be installed and configured on your system.
-
-### Running the Script
-1. Clone this repository or download the script file.
-2. Open PowerShell **as Administrator**.
-3. Navigate to the directory containing the script:
+1. Clone or download the script.
+2. Open PowerShell as Administrator.
+3. Run the script:
    ```powershell
-   cd <path-to-script>
-   ```
-4. Execute the script:
-   ```powershell
-   .\SetupScript.ps1
+   .\setup-script.ps1
    ```
 
-### Notes
-- Changes to the right-click menu, File Explorer settings, and theme may require restarting Windows Explorer or your system to take full effect.
-- The script will check if each program is already installed before attempting installation.
+## Functions
 
-## License
-This project is licensed under the [MIT License](LICENSE).
+### `Invoke-SystemCommand`
+Runs a system command with descriptive logging. Stops execution if the command fails.
 
-## Contributing
-Feel free to open issues or submit pull requests to improve the script or add additional features.
+### `Invoke-Revert-RightClickMenu`
+Reverts the context menu to the Windows 10 style.
+
+### `Invoke-ShowFileExtensions`
+Enables visibility of file extensions in File Explorer.
+
+### `Invoke-ShowHiddenFiles`
+Enables visibility of hidden files and system files in File Explorer.
+
+### `Invoke-RemoveOneDrive`
+Completely removes OneDrive and its associated data.
+
+### `Invoke-DisableWindowsCopilot`
+Disables Windows Copilot.
+
+### `Invoke-EnableDarkTheme`
+Enables the system-wide dark theme.
+
+### `Invoke-BingSearch`
+Disables Bing search integration in the Windows search bar.
+
+### `Invoke-TaskbarSearchBTN`
+Disables the taskbar search button.
+
+### `Invoke-TaskbarWidget`
+Removes the widget button from the taskbar.
+
+### `Invoke-DisableTelemetry`
+Limits telemetry and diagnostics data collection.
+
+## Additional Notes
+
+- The script provides logging for each task, indicating success or failure.
+- OneDrive removal includes steps to copy files from the OneDrive directory to the user's profile directory, ensuring no data is lost.
+- After the script completes, restart your system for all changes to take full effect.
+
+Enjoy a cleaner, more efficient Windows setup!
 
