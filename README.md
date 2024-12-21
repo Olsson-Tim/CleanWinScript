@@ -61,6 +61,9 @@ Install essential software automatically using **winget** (Windows Package Manag
 - If the script encounters an issue, detailed error messages will help identify the problem.
 - Verify dependencies, such as having `winget` installed and a stable internet connection.
 
+## Credits
+This script incorporates code and concepts from [Chris Titus Tech's WinUtil project](https://github.com/ChrisTitusTech/winutil). A big thanks to Chris Titus for providing a foundation for Windows optimization.
+
 ## License
 This project is licensed under the MIT License. You are free to modify and distribute it as needed.
 
