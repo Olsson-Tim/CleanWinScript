@@ -227,7 +227,8 @@ Invoke-Revert-RightClickMenu
 # Enable file extensions and hidden files visibility
 Invoke-ShowFileExtensions
 
-#Invoke-ShowHiddenFiles
+# Enable hidden files visibility
+Invoke-ShowHiddenFiles
 
 # Remove OneDrive
 Invoke-RemoveOneDrive
