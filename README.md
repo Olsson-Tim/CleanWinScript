@@ -42,6 +42,9 @@ Install essential software automatically using **winget** (Windows Package Manag
 1. Open PowerShell as an Administrator.
 2. Execute the script.
 
+### New Flag: `-noapp`
+- Use the `-noapp` flag to skip software installation during script execution.
+
 ### What Happens:
 - The script customizes your system by making registry changes.
 - OneDrive is uninstalled (with optional manual removal of leftover files).
