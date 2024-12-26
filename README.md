@@ -3,6 +3,8 @@
 ## Overview
 This script optimizes and customizes your Windows system by automating tasks such as enabling/disabling features, removing unnecessary software, and running essential system maintenance commands. It's an efficient, all-in-one solution to enhance productivity and streamline system performance.
 
+This scripts is made to work best with a Microwin image created with the [Chris Titus Tech's WinUtil project](https://christitustech.github.io/winutil/userguide/#microwin) but it should work with a normal windows 11 install.
+
 ## Features
 
 ### Customization:
