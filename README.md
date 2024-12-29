@@ -52,11 +52,11 @@ Install essential software automatically using **winget** (Windows Package Manag
 
     #### Default:
    ```ps1
-   irm "https://raw.githubusercontent.com/Olsson-Tim/windows_config/main/SetupScript.ps1" | iex
+   irm "https://raw.githubusercontent.com/Olsson-Tim/CleanWinScript/main/SetupScript.ps1" | iex
    ```
     #### Installs apps:
    ```ps1
-   irm "https://raw.githubusercontent.com/Olsson-Tim/windows_config/main/SetupScript.ps1" | iex -app
+   irm "https://raw.githubusercontent.com/Olsson-Tim/CleanWinScript/main/SetupScript.ps1" | iex -app
    ```
 
 ### What Happens:
