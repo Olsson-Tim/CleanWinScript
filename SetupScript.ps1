@@ -16,7 +16,7 @@ function Invoke-SystemCommand {
 }
 
 # Function to revert right-click menu to Windows 10 style
-function Invoke-Revert-RightClickMenu {
+function Invoke-RevertRightClickMenu {
     Write-Host "Reverting right-click menu to Windows 10 style..." -ForegroundColor Cyan
     try {
         New-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" -Name "InprocServer32" -force -value ""
@@ -253,11 +253,11 @@ function Invoke-SqliteToPath {
        Invoke-WebRequest -Uri $sourceUrl -OutFile $destinationPath
        Expand-Archive -Path $destinationPath -DestinationPath "C:\sqlite"
        Remove-Item -Path $destinationPath -Force
-       write-host "SQLite tools downloaded and extracted to $folderToAdd"
+       write-host "SQLite tools downloaded and extracted to $folderToAdd" -ForegroundColor Green
        
        [Environment]::SetEnvironmentVariable("Path", "$currentPathUser;$folderToAdd", "User")
        [Environment]::SetEnvironmentVariable("Path", "$currentPathMachine;$folderToAdd", "Machine")
-       write-host "Path updated"
+       write-host "Path updated" -ForegroundColor Green
    
     }
     catch {
@@ -269,7 +269,7 @@ function Invoke-SqliteToPath {
    }
 
 # Revert right-click menu to Windows 10 style
-Invoke-Revert-RightClickMenu
+Invoke-RevertRightClickMenu
 
 # Enable file extensions and hidden files visibility
 Invoke-ShowFileExtensions
