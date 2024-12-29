@@ -239,6 +239,35 @@ function Invoke-TaskbarEndTask {
     Write-Host "Taskbar End Task has been enabled." -ForegroundColor Green
 }
 
+function Invoke-SqliteToPath {
+    try {
+       #Download the SQLite tools to the specified path#
+       $sourceUrl = "https://www.sqlite.org/2024/sqlite-tools-win-x64-3470200.zip"
+       $destinationPath = "C:\sqlite\sqlite-tmp.zip"
+   
+       $folderToAdd = "C:\sqlite"
+       $currentPathUser = [Environment]::GetEnvironmentVariable("Path", "User")
+       $currentPathMachine = [Environment]::GetEnvironmentVariable("Path", "Machine")
+   
+       mkdir -Path "C:\sqlite" -Force
+       Invoke-WebRequest -Uri $sourceUrl -OutFile $destinationPath
+       Expand-Archive -Path $destinationPath -DestinationPath "C:\sqlite"
+       Remove-Item -Path $destinationPath -Force
+       write-host "SQLite tools downloaded and extracted to $folderToAdd"
+       
+       [Environment]::SetEnvironmentVariable("Path", "$currentPathUser;$folderToAdd", "User")
+       [Environment]::SetEnvironmentVariable("Path", "$currentPathMachine;$folderToAdd", "Machine")
+       write-host "Path updated"
+   
+    }
+    catch {
+       #Do this if a terminating exception happens#
+       Write-Host "An error occurred: $_"
+    }
+   
+       
+   }
+
 # Revert right-click menu to Windows 10 style
 Invoke-Revert-RightClickMenu
 
@@ -272,14 +301,17 @@ Invoke-DisableTelementery
 #Enable Taskbar End Task
 Invoke-TaskbarEndTask
 
+# Download and add SQLite tools to the PATH
+Invoke-SqliteToPath
+
 # Run system maintenance commands
 Invoke-SystemCommand "sfc /scannow" "System File Checker (SFC) scan"
 Invoke-SystemCommand "DISM /Online /Cleanup-Image /ScanHealth" "DISM ScanHealth"
 Invoke-SystemCommand "DISM /Online /Cleanup-Image /RestoreHealth" "DISM RestoreHealth"
 
 # Check for -noapps argument
-if ($args -notcontains "-noapps") {
-    Write-Host "No -noapps flag detected. Proceeding with application installation..." -ForegroundColor Cyan
+if ($args -contains "-apps") {
+    Write-Host "-apps flag detected. Proceeding with application installation..." -ForegroundColor Cyan
 
     # Define the list of programs to install
     $programs = @(
@@ -305,7 +337,7 @@ if ($args -notcontains "-noapps") {
         }
     }
 } else {
-    Write-Host "-noapps flag detected. Skipping application installation." -ForegroundColor Yellow
+    Write-Host "No -apps flag detected. Skipping application installation." -ForegroundColor Yellow
 }
 
 

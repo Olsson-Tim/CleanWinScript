@@ -7,25 +7,29 @@ This scripts is made to work best with a Microwin image created with the [Chris 
 
 ## Features
 
-### Customization:
-- Revert the right-click menu to Windows 10 style for better usability.
-- Enable visibility of file extensions and hidden files in File Explorer.
-- Activate a dark theme across Windows.
+### System Optimization and Configuration
+- **Revert Right-Click Menu**: Restores the classic Windows 10-style right-click menu.
+- **Show File Extensions**: Enables the visibility of file extensions in File Explorer.
+- **Show Hidden Files**: Makes hidden files visible in File Explorer.
+- **Disable Bing Search**: Removes Bing integration from the Windows search feature.
+- **Disable Taskbar Search Button**: Disables the search button on the taskbar.
+- **Disable Taskbar Widget**: Removes the taskbar widget.
+- **Enable Taskbar End Task**: Adds the "End Task" option to the taskbar context menu.
+- **Enable Dark Theme**: Activates the dark theme for apps and the system.
 
-### Optimization:
-- Completely remove OneDrive, including leftover files and registry entries.
-- Disable Windows Copilot.
-- Turn off Bing Search in the Start Menu.
-- Remove the Taskbar Search Button and Widgets.
-- Enable the Taskbar's End Task option for quick program termination.
-- Reduce system overhead by disabling unnecessary telemetry.
+### Maintenance Tools
+- **System File Checker (SFC) Scan**: Verifies the integrity of system files and repairs them if necessary.
+- **DISM Scan and Repair**: Scans and repairs the Windows image using Deployment Image Servicing and Management (DISM) tools.
 
-### Maintenance:
-Perform vital maintenance tasks using built-in Windows tools:
-- **sfc /scannow**: System File Checker to repair corrupted system files.
-- **DISM ScanHealth** and **DISM RestoreHealth**: Check and restore Windows image health.
+### Privacy and Cleanup
+- **Disable Windows Telemetry**: Reduces data collection by disabling telemetry services.
+- **Remove OneDrive**: Uninstalls OneDrive, removes its residual files, and restores default folder locations.
+- **Disable Windows Copilot**: Removes the Windows Copilot feature for a cleaner user experience.
 
-### Software Installation:
+### Development Tools
+- **Download SQLite Tools**: Automatically downloads SQLite tools and adds them to the system PATH for easy access.
+
+### (Optional) Software Installation:
 Install essential software automatically using **winget** (Windows Package Manager):
 - DB Browser for SQLite
 - Mozilla Firefox
@@ -37,15 +41,20 @@ Install essential software automatically using **winget** (Windows Package Manag
 ## Usage
 
 ### Prerequisites:
+- PowerShell 5.1 or later
 - Ensure you have administrative privileges to execute the script.
 - Confirm that the **winget** package manager is installed and up-to-date.
+- Confirm that you have enabled powershell scripts with **Get-ExecutionPolicy** 
 
 ### Running the Script:
 1. Open PowerShell as an Administrator.
 2. Execute the script.
+3. Optional: Use the `-apps` argument to install predefined applications.
 
-### New Flag: `-noapps`
-- Use the `-noapps` flag to skip software installation during script execution.
+   Example:
+   ```powershell
+   .\script.ps1 -apps
+   ```
 
 ### What Happens:
 - The script customizes your system by making registry changes.
