@@ -48,12 +48,15 @@ Install essential software automatically using **winget** (Windows Package Manag
 
 ### Running the Script:
 1. Open PowerShell as an Administrator.
-2. Execute the script.
-3. Optional: Use the `-apps` argument to install predefined applications.
+2. Execute the script. 
 
-   Example:
-   ```powershell
-   .\script.ps1 -apps
+    #### Default:
+   ```ps1
+   irm "https://raw.githubusercontent.com/Olsson-Tim/windows_config/main/SetupScript.ps1" | iex
+   ```
+    #### Installs apps:
+   ```ps1
+   irm "https://raw.githubusercontent.com/Olsson-Tim/windows_config/main/SetupScript.ps1" | iex -app
    ```
 
 ### What Happens:
