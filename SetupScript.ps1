@@ -309,8 +309,10 @@ Invoke-SystemCommand "sfc /scannow" "System File Checker (SFC) scan"
 Invoke-SystemCommand "DISM /Online /Cleanup-Image /ScanHealth" "DISM ScanHealth"
 Invoke-SystemCommand "DISM /Online /Cleanup-Image /RestoreHealth" "DISM RestoreHealth"
 
-# Check for -noapps argument
-if ($args -contains "-apps") {
+# Install applications
+$apps = Read-Host -Prompt "Would you like to install applications? (Y/N)"
+
+if ($apps -eq "Y") {
     Write-Host "-apps flag detected. Proceeding with application installation..." -ForegroundColor Cyan
 
     # Define the list of programs to install
