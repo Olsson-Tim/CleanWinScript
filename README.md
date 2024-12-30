@@ -54,11 +54,7 @@ Install essential software automatically using **winget** (Windows Package Manag
    ```ps1
    irm "https://raw.githubusercontent.com/Olsson-Tim/CleanWinScript/main/SetupScript.ps1" | iex
    ```
-    #### Installs apps:
-   ```ps1
-   irm "https://raw.githubusercontent.com/Olsson-Tim/CleanWinScript/main/SetupScript.ps1" | iex -app
-   ```
-
+   
 ### What Happens:
 - The script customizes your system by making registry changes.
 - OneDrive is uninstalled (with optional manual removal of leftover files).
