@@ -1,1 +1,11 @@
 test_dl.ps1
+
+# Log files
+*.log
+
+# Temporary files
+temp/
+tmp/
+
+# SQLite directory (if created during testing)
+sqlite/

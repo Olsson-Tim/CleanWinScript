@@ -1,0 +1,33 @@
+{
+  "SystemSettings": {
+    "RevertRightClickMenu": true,
+    "ShowFileExtensions": true,
+    "ShowHiddenFiles": true,
+    "EnableDarkTheme": true,
+    "EnableTaskbarEndTask": true
+  },
+  "PrivacySettings": {
+    "DisableBingSearch": true,
+    "DisableTaskbarSearchButton": true,
+    "DisableTaskbarWidget": true,
+    "DisableWindowsCopilot": true,
+    "DisableTelemetry": true
+  },
+  "Maintenance": {
+    "RunSFC": true,
+    "RunDISM": true
+  },
+  "Software": {
+    "RemoveOneDrive": true,
+    "InstallApplications": true,
+    "InstallSQLite": true
+  },
+  "Applications": [
+    "DBBrowserForSQLite.DBBrowserForSQLite",
+    "Mozilla.Firefox",
+    "Notepad++.Notepad++",
+    "CodeSector.TeraCopy",
+    "Python.Python.3.13",
+    "7zip.7zip"
+  ]
+}
